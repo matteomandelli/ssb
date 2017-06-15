@@ -1,0 +1,3 @@
+// the configured options and settings for Tutorial
+#define SSB_VERSION_MAJOR @Metrics_VERSION_MAJOR@
+#define SSB_VERSION_MINOR @Metrics_VERSION_MINOR@

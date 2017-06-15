@@ -1,0 +1,4 @@
+#include "../src/resource.h"
+#include "windows.h"
+
+IDI_SSB   ICON "ssb.ico"
