@@ -680,8 +680,8 @@ void ImDrawList::AddConvexPolyFilled(const ImVec2* points, const int points_coun
 
 void ImDrawList::PathArcToFast(const ImVec2& centre, float radius, int amin, int amax)
 {
-    static ImVec2 circle_vtx[12];
-    static bool circle_vtx_builds = false;
+    static thread_local ImVec2 circle_vtx[12];
+    static thread_local bool circle_vtx_builds = false;
     const int circle_vtx_count = IM_ARRAYSIZE(circle_vtx);
     if (!circle_vtx_builds)
     {
@@ -1649,7 +1649,7 @@ const ImWchar*  ImFontAtlas::GetGlyphRangesJapanese()
         0x31F0, 0x31FF, // Katakana Phonetic Extensions
         0xFF00, 0xFFEF, // Half-width characters
     };
-    static bool full_ranges_unpacked = false;
+    static thread_local bool full_ranges_unpacked = false;
     static ImWchar full_ranges[IM_ARRAYSIZE(base_ranges) + IM_ARRAYSIZE(offsets_from_0x4E00)*2 + 1];
     if (!full_ranges_unpacked)
     {
@@ -2209,8 +2209,8 @@ static unsigned int stb_decompress_length(unsigned char *input)
     return (input[8] << 24) + (input[9] << 16) + (input[10] << 8) + input[11];
 }
 
-static unsigned char *stb__barrier, *stb__barrier2, *stb__barrier3, *stb__barrier4;
-static unsigned char *stb__dout;
+static thread_local unsigned char *stb__barrier, *stb__barrier2, *stb__barrier3, *stb__barrier4;
+static thread_local unsigned char *stb__dout;
 static void stb__match(unsigned char *data, unsigned int length)
 {
     // INVERSE of memmove... write each byte before copying the next...
