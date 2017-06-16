@@ -14,6 +14,8 @@ int Window::Initialise(const char* title, int width, int height)
     if (!QueryPerformanceCounter((LARGE_INTEGER *)&m_context.m_time))
         return false;
 
+    m_pTitle = strdup(title);
+
     m_context.m_width = width;
     m_context.m_height = height;
 
@@ -101,8 +103,11 @@ int Window::Terminate()
     ImGui::Shutdown();
     ImGui::DestroyContext(m_context.m_pImGui);
 
-    //:TODO:
-    //UnregisterClass(_T("ImGui Example"), m_d3dContext.m_wc.hInstance);
+    
+    DestroyIcon(m_context.m_wc.hIcon);
+    UnregisterClass(TEXT(m_pTitle), m_context.m_wc.hInstance);
+    if (m_context.m_hWnd) DestroyWindow(m_context.m_hWnd);
+    if (m_pTitle != nullptr) free(m_pTitle);
 
     return 0;
 }

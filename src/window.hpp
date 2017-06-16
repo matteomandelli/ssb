@@ -44,6 +44,7 @@ private:
     WindowRenderer              m_renderer;
     ID3D10ShaderResourceView*   m_pFontTexture = nullptr;
     MSG                         m_msg;
+    char*                       m_pTitle = nullptr;
     bool                        m_open = true;
     bool                        m_render = false;
     bool                        m_close = false;

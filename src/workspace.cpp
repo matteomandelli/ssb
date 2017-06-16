@@ -19,6 +19,7 @@ void WindowThread(int& i)
         window.Update();
         window.Render();
     }
+    window.Terminate();
 }
 
 int Workspace::Initialise()
